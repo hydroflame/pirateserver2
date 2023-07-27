@@ -14,13 +14,26 @@ export const Node = ({ file, filenames, root }: IProps): React.ReactElement => {
   const children = filenames.filter((f) => f.startsWith(file + "/"));
   return (
     <>
-      <img src={`http://${config.host}/api/meta?q=${file}`} />
-      {children.length ? (
+      {hasThumbnail && <img src={`http://${config.host}/api/meta?q=${file}`} />}
+      {/* {children.length ? (
         <FolderNode file={file} filenames={children} root={root} />
       ) : (
         <FileNode file={file} filenames={filenames} root={root} />
-      )}
+      )} */}
     </>
+  );
+};
+
+export const OldNode = ({
+  file,
+  filenames,
+  root,
+}: IProps): React.ReactElement => {
+  const children = filenames.filter((f) => f.startsWith(file + "/"));
+  return children.length ? (
+    <FolderNode file={file} filenames={children} root={root} />
+  ) : (
+    <FileNode file={file} filenames={filenames} root={root} />
   );
 };
 

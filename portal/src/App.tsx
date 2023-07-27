@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Toolbar } from "./Toolbar";
 import fuzzysort from "fuzzysort";
-import {
-  copyToClipboard,
-  Folder,
-  isFile,
-  makeHighestTarget,
-  mapSearchResult,
-} from "./utils";
+import { makeHighestTarget } from "./utils";
 import { Box } from "@mui/system";
-import { TreeView } from "@mui/lab";
-import { Node } from "./Node";
+import { Node, OldNode } from "./Node";
 import { dispatchCopy } from "./CurrentSelection";
-import { Typography } from "@mui/material";
 import { debounce } from "lodash";
+import { Results } from "./Results";
 
 function App({ files }: { files: string[] }) {
   const [search, setSearch] = useState("");
@@ -36,10 +29,16 @@ function App({ files }: { files: string[] }) {
   return (
     <>
       <Toolbar search={search} setSearch={onChange} />
-      <Box sx={{ padding: "1em" }}>
-        {/* {filenames.map((r) => (
-          <Typography key={r}>{r}</Typography>
-        ))} */}
+      <Results targets={targets} files={files} />
+      <Box
+        sx={{
+          padding: "1em",
+          display: "flex",
+          justifyContent: "space-evenly",
+          flexDirection: "row",
+          flexWrap: "wrap",
+        }}
+      >
         {targets.map((f, i) => (
           <Node key={i} file={f} filenames={files} root={true} />
         ))}
