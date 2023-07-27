@@ -5,7 +5,9 @@
   "main": "src/main.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "npx tsc",
+    "run": "node dist/main.js",
+    "both": "npx tsc && node dist/main.js"
   },
   "keywords": [],
   "author": "",
