@@ -1,4 +1,4 @@
-import * as fs from "fs";
+import fs from "fs";
 
 export const listFiles = (root: string, path: string): string[] => {
   const stat = fs.statSync(path);
